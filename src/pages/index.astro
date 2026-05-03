@@ -1,12 +1,46 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Skills from "../components/Skills.astro";
+import Projects from "../components/Projects.astro";
+import Certifications from "../components/Certifications.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <BaseLayout>
-  <main class="max-w-3xl mx-auto px-6 py-24">
-    <h1 class="text-4xl font-bold mb-4">Christopher Corbin</h1>
-    <p class="text-lg text-slate-600">
-      Site under reconstruction. Components landing soon.
-    </p>
+  <Nav />
+  <main id="main-content">
+    <Hero />
+    <About />
+    <Experience />
+    <Skills />
+    <Projects />
+    <Certifications />
+    <Contact />
   </main>
 </BaseLayout>
+
+<script>
+  // Scroll-triggered reveal using IntersectionObserver
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          // Once revealed, stop observing
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.08,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
+
+  // Observe all reveal elements
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>

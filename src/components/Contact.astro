@@ -1,0 +1,177 @@
+---
+import { siteContent } from "../data/content";
+import ContactForm from "./ContactForm";
+
+const { contact } = siteContent;
+---
+
+<section id="contact" class="contact-section" aria-labelledby="contact-heading">
+  <div class="contact-inner">
+
+    <div class="contact-header reveal">
+      <p class="section-eyebrow">Contact</p>
+      <span class="accent-rule"></span>
+      <h2 id="contact-heading" class="contact-heading">Let's build something.</h2>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Info column -->
+      <div class="contact-info reveal reveal-delay-1">
+        <p class="contact-intro">
+          Open to full-time roles, contract engagements, and serious conversations about
+          cloud architecture and security. Based in Barbados, available globally.
+        </p>
+
+        <address class="contact-details" aria-label="Contact details">
+          <dl>
+            <div class="detail-row">
+              <dt class="detail-label">Email</dt>
+              <dd class="detail-value">
+                <a href={`mailto:${contact.email}`} class="contact-link">
+                  {contact.emailDisplay}
+                </a>
+              </dd>
+            </div>
+            <div class="detail-row">
+              <dt class="detail-label">Phone</dt>
+              <dd class="detail-value">
+                <a href={`tel:${contact.phone.replace(/\s/g, "")}`} class="contact-link">
+                  {contact.phone}
+                </a>
+              </dd>
+            </div>
+            <div class="detail-row">
+              <dt class="detail-label">Location</dt>
+              <dd class="detail-value">{contact.location}</dd>
+            </div>
+            {contact.socials.github && (
+              <div class="detail-row">
+                <dt class="detail-label">GitHub</dt>
+                <dd class="detail-value">
+                  <a
+                    href={contact.socials.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                  >
+                    {contact.socials.github.replace("https://", "")}
+                    <span aria-hidden="true"> ↗</span>
+                  </a>
+                </dd>
+              </div>
+            )}
+          </dl>
+        </address>
+      </div>
+
+      <!-- Contact form -->
+      <div class="contact-form-wrap reveal reveal-delay-2">
+        <ContactForm client:load />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: 7rem 0 8rem;
+    background: var(--color-paper);
+  }
+
+  .contact-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .contact-header {
+    margin-bottom: 4rem;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 2.5rem;
+  }
+
+  .contact-heading {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    margin-top: 1.25rem;
+    line-height: 1.08;
+  }
+
+  /* Grid */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+  }
+
+  /* Info */
+  .contact-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin-bottom: 2.5rem;
+    max-width: 38ch;
+  }
+
+  .contact-details dl {
+    margin: 0;
+    padding: 0;
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 1rem;
+    padding: 0.875rem 0;
+    border-top: 1px solid var(--color-rule);
+    align-items: baseline;
+  }
+
+  .detail-row:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .detail-label {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  .detail-value {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--color-ink-muted);
+  }
+
+  .contact-link {
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-rule);
+    transition: border-color 0.2s, color 0.2s;
+    padding-bottom: 1px;
+  }
+
+  .contact-link:hover {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+
+  /* Form wrapper */
+  .contact-form-wrap {
+    position: relative;
+  }
+</style>

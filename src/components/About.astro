@@ -1,0 +1,137 @@
+---
+import { siteContent } from "../data/content";
+
+const { about } = siteContent;
+// Split bio into paragraphs on double-newline
+const bioParagraphs = about.bio.split("\n\n");
+---
+
+<section id="about" class="about-section" aria-labelledby="about-heading">
+  <div class="about-inner">
+
+    <!-- Section label -->
+    <div class="about-header reveal">
+      <p class="section-eyebrow">About</p>
+      <span class="accent-rule"></span>
+      <h2 id="about-heading" class="about-heading">
+        Turning complexity<br />into security.
+      </h2>
+    </div>
+
+    <!-- Content grid: bio + stats -->
+    <div class="about-grid">
+      <!-- Bio -->
+      <div class="about-bio reveal reveal-delay-1">
+        {bioParagraphs.map((para) => (
+          <p class="bio-para">{para}</p>
+        ))}
+      </div>
+
+      <!-- Stats -->
+      <aside class="about-stats" aria-label="Career highlights">
+        {about.stats.map((stat, i) => (
+          <div
+            class:list={["stat-tile", "reveal", `reveal-delay-${i + 2}`]}
+            role="listitem"
+          >
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 7rem 0;
+    background: var(--color-paper);
+  }
+
+  .about-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .about-header {
+    margin-bottom: 4rem;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 2.5rem;
+  }
+
+  .about-heading {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    margin-top: 1.25rem;
+    line-height: 1.08;
+    max-width: 18ch;
+  }
+
+  /* Two-column: bio left, stats right */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr 280px;
+      gap: 5rem;
+      align-items: start;
+    }
+  }
+
+  .bio-para {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .bio-para:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Stats */
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stat-tile {
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--color-rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-tile:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-ink-faint);
+    letter-spacing: 0.02em;
+    margin-top: 0.375rem;
+  }
+</style>

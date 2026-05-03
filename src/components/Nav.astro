@@ -1,0 +1,321 @@
+---
+import { siteContent } from "../data/content";
+
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header id="site-nav" role="banner">
+  <nav aria-label="Main navigation">
+    <div class="nav-inner">
+      <!-- Wordmark -->
+      <a href="#home" class="nav-wordmark" aria-label="Christopher Corbin — home">
+        <span class="wordmark-first">C</span><span class="wordmark-last">C</span>
+        <span class="wordmark-full" aria-hidden="true">{siteContent.meta.siteName}</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="nav-link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Resume CTA -->
+      <a
+        href="/assets/Christopher_Corbin_Resume.pdf"
+        download
+        class="nav-resume"
+        aria-label="Download resume PDF"
+      >
+        Resume <span aria-hidden="true">↓</span>
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="nav-toggle"
+        class="nav-hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <ul role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="mobile-link">{link.label}</a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/assets/Christopher_Corbin_Resume.pdf"
+            download
+            class="mobile-link mobile-resume"
+          >
+            Download Resume ↓
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  header.scrolled {
+    border-bottom-color: var(--color-rule);
+  }
+
+  .nav-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.125rem;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+    flex-shrink: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+
+  .wordmark-first {
+    color: var(--color-accent);
+  }
+
+  .wordmark-last {
+    color: var(--color-ink);
+  }
+
+  .wordmark-full {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .wordmark-first,
+    .wordmark-last {
+      display: none;
+    }
+    .wordmark-full {
+      display: inline;
+    }
+  }
+
+  .nav-links {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    flex: 1;
+  }
+
+  @media (min-width: 900px) {
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-muted);
+    padding: 0.4rem 0.75rem;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--color-ink);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-resume {
+    margin-left: auto;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    border: 1.5px solid var(--color-accent);
+    padding: 0.35rem 0.875rem;
+    transition: background 0.2s, color 0.2s;
+    display: none;
+    flex-shrink: 0;
+  }
+
+  .nav-resume:hover {
+    background: var(--color-accent);
+    color: var(--color-paper);
+  }
+
+  @media (min-width: 640px) {
+    .nav-resume {
+      display: inline-block;
+    }
+  }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+
+  @media (min-width: 900px) {
+    .nav-hamburger {
+      display: none;
+    }
+  }
+
+  .bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--color-ink);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s;
+    transform-origin: center;
+  }
+
+  .nav-hamburger[aria-expanded="true"] .bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .nav-hamburger[aria-expanded="true"] .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .nav-hamburger[aria-expanded="true"] .bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-top: 1px solid transparent;
+  }
+
+  .mobile-menu[aria-hidden="false"] {
+    max-height: 480px;
+    border-top-color: var(--color-rule);
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-link {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--color-rule);
+    transition: color 0.2s;
+  }
+
+  .mobile-link:hover {
+    color: var(--color-ink);
+  }
+
+  .mobile-resume {
+    color: var(--color-accent);
+    border-bottom: none;
+    font-weight: 600;
+    padding-top: 1rem;
+  }
+</style>
+
+<script>
+  const header = document.getElementById("site-nav")!;
+  const toggle = document.getElementById("nav-toggle")!;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+
+  // Scroll shadow
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 20);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Hamburger toggle
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    mobileMenu.setAttribute("aria-hidden", String(isOpen));
+  });
+
+  // Close on link click
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggle.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
+    });
+  });
+</script>

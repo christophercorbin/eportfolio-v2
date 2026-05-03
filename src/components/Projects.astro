@@ -42,7 +42,7 @@ const { projects } = siteContent;
               <span class="link-label">GitHub</span>
               <span class="link-arrow" aria-hidden="true">↗</span>
             </a>
-            {project.links.demo && project.links.demo !== project.links.github && (
+            {project.links.demo && (project.links.demo as string) !== (project.links.github as string) && (
               <a
                 href={project.links.demo}
                 target="_blank"

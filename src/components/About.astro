@@ -2,136 +2,101 @@
 import { siteContent } from "../data/content";
 
 const { about } = siteContent;
-// Split bio into paragraphs on double-newline
 const bioParagraphs = about.bio.split("\n\n");
 ---
 
 <section id="about" class="about-section" aria-labelledby="about-heading">
-  <div class="about-inner">
+  <div class="site-container">
+    <h2 id="about-heading" class="section-title reveal">About Me</h2>
 
-    <!-- Section label -->
-    <div class="about-header reveal">
-      <p class="section-eyebrow">About</p>
-      <span class="accent-rule"></span>
-      <h2 id="about-heading" class="about-heading">
-        Turning complexity<br />into security.
-      </h2>
-    </div>
-
-    <!-- Content grid: bio + stats -->
-    <div class="about-grid">
+    <div class="about-content">
       <!-- Bio -->
-      <div class="about-bio reveal reveal-delay-1">
+      <div class="about-text reveal reveal-delay-1">
         {bioParagraphs.map((para) => (
           <p class="bio-para">{para}</p>
         ))}
       </div>
 
       <!-- Stats -->
-      <aside class="about-stats" aria-label="Career highlights">
+      <div class="about-stats" aria-label="Career highlights">
         {about.stats.map((stat, i) => (
           <div
-            class:list={["stat-tile", "reveal", `reveal-delay-${i + 2}`]}
+            class:list={["stat-card", "reveal", `reveal-delay-${i + 2}`]}
             role="listitem"
           >
             <span class="stat-value">{stat.value}</span>
             <span class="stat-label">{stat.label}</span>
           </div>
         ))}
-      </aside>
+      </div>
     </div>
-
   </div>
 </section>
 
 <style>
   .about-section {
-    padding: 7rem 0;
-    background: var(--color-paper);
+    padding: 6rem 0;
+    background: var(--color-bg-primary);
   }
 
-  .about-inner {
-    max-width: 72rem;
+  .about-content {
+    max-width: 820px;
     margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  .about-header {
-    margin-bottom: 4rem;
-    border-top: 1px solid var(--color-rule);
-    padding-top: 2.5rem;
-  }
-
-  .about-heading {
-    font-size: clamp(2rem, 4vw, 3.25rem);
-    font-weight: 800;
-    margin-top: 1.25rem;
-    line-height: 1.08;
-    max-width: 18ch;
-  }
-
-  /* Two-column: bio left, stats right */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .about-grid {
-      grid-template-columns: 1fr 280px;
-      gap: 5rem;
-      align-items: start;
-    }
+    text-align: center;
   }
 
   .bio-para {
-    font-family: var(--font-body);
-    font-size: 1.0625rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--color-ink-muted);
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
     margin-bottom: 1.25rem;
+    line-height: 1.8;
   }
 
-  .bio-para:last-child {
+  .bio-para:last-of-type {
     margin-bottom: 0;
   }
 
-  /* Stats */
+  /* Stats row */
   .about-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
   }
 
-  .stat-tile {
-    padding: 1.75rem 0;
-    border-top: 1px solid var(--color-rule);
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+  @media (max-width: 600px) {
+    .about-stats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
   }
 
-  .stat-tile:last-child {
-    border-bottom: 1px solid var(--color-rule);
+  .stat-card {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
   }
 
   .stat-value {
-    font-family: var(--font-display);
-    font-size: 2.75rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
     line-height: 1;
-    color: var(--color-ink);
   }
 
   .stat-label {
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-    font-weight: 400;
-    color: var(--color-ink-faint);
-    letter-spacing: 0.02em;
-    margin-top: 0.375rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
   }
 </style>

@@ -2,214 +2,181 @@
 import { siteContent } from "../data/content";
 
 const { projects } = siteContent;
+
+// Project icons matching v1
+const projectIcons = ["fa-shield-alt", "fa-tasks", "fa-graduation-cap"];
 ---
 
 <section id="projects" class="projects-section" aria-labelledby="projects-heading">
-  <div class="projects-inner">
+  <div class="site-container">
+    <h2 id="projects-heading" class="section-title reveal">Featured Projects</h2>
 
-    <div class="projects-header reveal">
-      <p class="section-eyebrow">Projects</p>
-      <span class="accent-rule"></span>
-      <h2 id="projects-heading" class="projects-heading">Work I've shipped.</h2>
-    </div>
-
-    <!-- Full-width feature rows, not card grids -->
-    <ol class="projects-list" role="list">
+    <div class="projects-grid">
       {projects.map((project, i) => (
-        <li class:list={["project-row", "reveal", `reveal-delay-${Math.min(i + 1, 6)}`]}>
-          <div class="project-number" aria-hidden="true">
-            {String(i + 1).padStart(2, "0")}
+        <div class:list={["project-card", "reveal", `reveal-delay-${Math.min(i + 1, 6)}`]}>
+          <!-- Gradient header with icon -->
+          <div class="project-image">
+            <i class:list={["fas", projectIcons[i] ?? "fa-code", "fa-3x"]} aria-hidden="true"></i>
+            <span class="project-badge">Live Repo</span>
           </div>
 
-          <div class="project-body">
+          <!-- Content -->
+          <div class="project-content">
             <h3 class="project-title">{project.title}</h3>
             <p class="project-description">{project.description}</p>
+
             <div class="project-tech" aria-label={`Technologies: ${project.tech.join(", ")}`}>
               {project.tech.map((t) => (
-                <span class="tech-chip">{t}</span>
+                <span class="tech-tag">{t}</span>
               ))}
             </div>
-          </div>
 
-          <div class="project-links">
-            <a
-              href={project.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-              aria-label={`View ${project.title} on GitHub`}
-            >
-              <span class="link-label">GitHub</span>
-              <span class="link-arrow" aria-hidden="true">↗</span>
-            </a>
-            {project.links.demo && (project.links.demo as string) !== (project.links.github as string) && (
+            <div class="project-links">
               <a
-                href={project.links.demo}
+                href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="project-link"
-                aria-label={`View ${project.title} demo or readme`}
+                aria-label={`View ${project.title} on GitHub`}
               >
-                <span class="link-label">View</span>
-                <span class="link-arrow" aria-hidden="true">↗</span>
+                <i class="fab fa-github" aria-hidden="true"></i> View Code
               </a>
-            )}
+              {project.links.demo && (project.links.demo as string) !== (project.links.github as string) && (
+                <a
+                  href={project.links.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-link"
+                  aria-label={`View ${project.title} documentation`}
+                >
+                  <i class="fas fa-external-link-alt" aria-hidden="true"></i> Documentation
+                </a>
+              )}
+            </div>
           </div>
-        </li>
+        </div>
       ))}
-    </ol>
-
+    </div>
   </div>
 </section>
 
 <style>
   .projects-section {
-    padding: 7rem 0;
-    background: var(--color-ink);
-    color: var(--color-paper);
+    padding: 6rem 0;
+    background: var(--color-bg-secondary);
   }
 
-  .projects-inner {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  .projects-header {
-    margin-bottom: 4rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding-top: 2.5rem;
-  }
-
-  /* Override eyebrow and rule colors on dark bg */
-  .projects-header .section-eyebrow {
-    color: var(--color-accent);
-  }
-
-  .projects-heading {
-    font-size: clamp(2rem, 4vw, 3.25rem);
-    font-weight: 800;
-    margin-top: 1.25rem;
-    line-height: 1.08;
-    color: var(--color-paper);
-  }
-
-  /* Projects list */
-  .projects-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .project-row {
+  .projects-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    padding: 2.5rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    transition: border-top-color 0.25s;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
   }
 
-  .project-row:last-child {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  @media (min-width: 768px) {
-    .project-row {
-      grid-template-columns: 3rem 1fr auto;
-      gap: 2rem;
-      align-items: start;
-      padding: 3rem 0;
-    }
-
-    .project-row:hover {
-      border-top-color: var(--color-accent);
+  @media (max-width: 640px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
     }
   }
 
-  .project-number {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: var(--color-accent);
-    padding-top: 0.3rem;
+  .project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
   }
 
-  .project-body {
-    flex: 1;
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Gradient image header */
+  .project-image {
+    background: linear-gradient(135deg, #ff9900 0%, #146eb4 100%);
+    padding: 3rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-secondary);
+    padding: 0.25rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: pulse-badge 2s infinite;
+  }
+
+  @keyframes pulse-badge {
+    0%, 100% { opacity: 0.9; transform: scale(1); }
+    50%       { opacity: 1; transform: scale(1.04); }
+  }
+
+  /* Content */
+  .project-content {
+    padding: 2rem;
   }
 
   .project-title {
-    font-family: var(--font-display);
-    font-size: 1.375rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--color-paper);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.875rem;
+    color: var(--color-secondary);
+    line-height: 1.3;
   }
 
   .project-description {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(248, 246, 241, 0.65);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
     margin-bottom: 1.25rem;
-    max-width: 65ch;
   }
 
-  /* Tech chips on dark */
-  .project-row .tech-chip {
-    border-color: rgba(255, 255, 255, 0.15);
-    color: rgba(248, 246, 241, 0.5);
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  .project-row .tech-chip:hover {
-    border-color: rgba(255, 255, 255, 0.35);
-    color: var(--color-paper);
+  .tech-tag {
+    background: var(--color-bg-secondary);
+    padding: 0.3rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: var(--color-text-primary);
+    font-weight: 500;
+    cursor: default;
   }
 
-  /* Links */
   .project-links {
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    flex-shrink: 0;
-    padding-top: 0.25rem;
-  }
-
-  @media (min-width: 768px) {
-    .project-links {
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.625rem;
-    }
+    gap: 1.25rem;
   }
 
   .project-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
+    gap: 0.4rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    color: rgba(248, 246, 241, 0.5);
-    text-transform: uppercase;
-    transition: color 0.2s;
+    color: var(--color-primary);
+    transition: all 0.3s ease;
   }
 
   .project-link:hover {
     color: var(--color-accent);
-  }
-
-  .link-arrow {
-    font-size: 0.875rem;
-    transition: transform 0.2s;
-  }
-
-  .project-link:hover .link-arrow {
-    transform: translate(2px, -2px);
+    transform: translateX(3px);
   }
 </style>

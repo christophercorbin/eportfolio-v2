@@ -2,25 +2,27 @@
 
 @theme {
   /* Typography */
-  --font-display: "Syne", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  /* Color palette */
-  --color-ink: #0f0f0f;
-  --color-ink-muted: #4a4a4a;
-  --color-ink-faint: #8a8a8a;
-  --color-paper: #f8f6f1;
-  --color-paper-warm: #f0ece3;
-  --color-rule: #d8d4cc;
-  --color-accent: #c84b31;
-  --color-accent-hover: #a83825;
+  /* AWS color palette */
+  --color-primary: #ff9900;
+  --color-secondary: #232f3e;
+  --color-accent: #146eb4;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-text-light: #999999;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-dark: #232f3e;
 
-  /* Spacing scale (extending defaults) */
-  --spacing-section: 7rem;
-  --spacing-section-sm: 4rem;
+  /* Radius & shadow */
+  --radius-card: 12px;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-/* Base resets & global styles */
+/* Base resets */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -32,59 +34,45 @@ html {
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  animation: page-fade-in 0.5s ease forwards;
 }
 
-/* Grain overlay for warmth */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px 128px;
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* Display headings */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
+  line-height: 1.2;
+  color: var(--color-secondary);
 }
 
-/* Horizontal rule styling */
-hr {
-  border: none;
-  border-top: 1px solid var(--color-rule);
-}
-
-/* Focus ring consistency */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-}
-
-/* Link defaults */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* Scroll reveal animation */
+hr {
+  border: none;
+  border-top: 1px solid #e9ecef;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .reveal.visible {
@@ -92,7 +80,6 @@ a {
   transform: translateY(0);
 }
 
-/* Staggered reveal delays */
 .reveal-delay-1 { transition-delay: 0.08s; }
 .reveal-delay-2 { transition-delay: 0.16s; }
 .reveal-delay-3 { transition-delay: 0.24s; }
@@ -100,36 +87,50 @@ a {
 .reveal-delay-5 { transition-delay: 0.40s; }
 .reveal-delay-6 { transition-delay: 0.48s; }
 
-/* Section label utility */
-@utility section-eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-accent);
+/* Shared container */
+.site-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Accent line for section headers */
-@utility accent-rule {
-  display: block;
-  width: 2.5rem;
-  height: 2px;
-  background-color: var(--color-accent);
-  margin-bottom: 1.5rem;
+/* Section title with gradient underline */
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3.5rem;
+  color: var(--color-secondary);
+  position: relative;
 }
 
-/* Tech chip */
-@utility tech-chip {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 0.2em 0.65em;
-  border: 1px solid var(--color-rule);
+.section-title::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, #ff9900 0%, #146eb4 100%);
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 2px;
-  color: var(--color-ink-muted);
-  background: transparent;
-  transition: border-color 0.2s, color 0.2s;
+}
+
+/* Skill/tech tag chip */
+@utility skill-chip {
+  display: inline-block;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+@utility skill-chip-hover {
+  background: linear-gradient(135deg, #ff9900 0%, #146eb4 100%);
+  color: white;
+  transform: translateY(-2px);
 }

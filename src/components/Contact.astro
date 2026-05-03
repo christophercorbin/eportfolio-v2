@@ -6,61 +6,48 @@ const { contact } = siteContent;
 ---
 
 <section id="contact" class="contact-section" aria-labelledby="contact-heading">
-  <div class="contact-inner">
-
-    <div class="contact-header reveal">
-      <p class="section-eyebrow">Contact</p>
-      <span class="accent-rule"></span>
-      <h2 id="contact-heading" class="contact-heading">Let's build something.</h2>
-    </div>
+  <div class="site-container">
+    <h2 id="contact-heading" class="section-title reveal">Get In Touch</h2>
 
     <div class="contact-grid">
       <!-- Info column -->
       <div class="contact-info reveal reveal-delay-1">
+        <h3 class="contact-info-title">Let's Connect</h3>
         <p class="contact-intro">
-          Open to full-time roles, contract engagements, and serious conversations about
-          cloud architecture and security. Based in Barbados, available globally.
+          I'm always interested in discussing new opportunities, cloud architecture challenges,
+          and security engineering roles. Open to relocation and willing to travel.
         </p>
 
-        <address class="contact-details" aria-label="Contact details">
-          <dl>
-            <div class="detail-row">
-              <dt class="detail-label">Email</dt>
-              <dd class="detail-value">
-                <a href={`mailto:${contact.email}`} class="contact-link">
-                  {contact.emailDisplay}
-                </a>
-              </dd>
+        <address class="contact-methods" aria-label="Contact details">
+          <div class="contact-method">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a href={`mailto:${contact.email}`} class="contact-link">
+              {contact.emailDisplay}
+            </a>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <a href={`tel:${contact.phone.replace(/\s/g, "")}`} class="contact-link">
+              {contact.phone}
+            </a>
+          </div>
+          {contact.socials.github && (
+            <div class="contact-method">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <a
+                href={contact.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link"
+              >
+                {contact.socials.github.replace("https://", "")}
+              </a>
             </div>
-            <div class="detail-row">
-              <dt class="detail-label">Phone</dt>
-              <dd class="detail-value">
-                <a href={`tel:${contact.phone.replace(/\s/g, "")}`} class="contact-link">
-                  {contact.phone}
-                </a>
-              </dd>
-            </div>
-            <div class="detail-row">
-              <dt class="detail-label">Location</dt>
-              <dd class="detail-value">{contact.location}</dd>
-            </div>
-            {contact.socials.github && (
-              <div class="detail-row">
-                <dt class="detail-label">GitHub</dt>
-                <dd class="detail-value">
-                  <a
-                    href={contact.socials.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="contact-link"
-                  >
-                    {contact.socials.github.replace("https://", "")}
-                    <span aria-hidden="true"> ↗</span>
-                  </a>
-                </dd>
-              </div>
-            )}
-          </dl>
+          )}
+          <div class="contact-method">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <span>{contact.location}</span>
+          </div>
         </address>
       </div>
 
@@ -69,109 +56,150 @@ const { contact } = siteContent;
         <ContactForm client:load />
       </div>
     </div>
-
   </div>
 </section>
 
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="site-container footer-inner">
+    <p class="footer-copy">&copy; 2026 Christopher Corbin. Deployed via GitHub CI/CD &rarr; AWS S3 + CloudFront.</p>
+    <div class="footer-links">
+      {contact.socials.github && (
+        <a href={contact.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+      )}
+      <a href={`mailto:${contact.email}`} aria-label="Email">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+      </a>
+      <a href={`tel:${contact.phone.replace(/\s/g, "")}`} aria-label="Phone">
+        <i class="fas fa-phone" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
 <style>
   .contact-section {
-    padding: 7rem 0 8rem;
-    background: var(--color-paper);
+    padding: 6rem 0 5rem;
+    background: var(--color-bg-dark);
+    color: white;
   }
 
-  .contact-inner {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+  /* Override section-title for dark bg */
+  .contact-section .section-title {
+    color: white;
   }
 
-  .contact-header {
-    margin-bottom: 4rem;
-    border-top: 1px solid var(--color-rule);
-    padding-top: 2.5rem;
-  }
-
-  .contact-heading {
-    font-size: clamp(2rem, 4vw, 3.25rem);
-    font-weight: 800;
-    margin-top: 1.25rem;
-    line-height: 1.08;
-  }
-
-  /* Grid */
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     .contact-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
   }
 
-  /* Info */
+  /* Info side */
+  .contact-info-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
   .contact-intro {
-    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.75);
     font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--color-ink-muted);
-    margin-bottom: 2.5rem;
-    max-width: 38ch;
+    line-height: 1.7;
+    margin-bottom: 2rem;
   }
 
-  .contact-details dl {
-    margin: 0;
-    padding: 0;
-  }
-
-  .detail-row {
-    display: grid;
-    grid-template-columns: 5.5rem 1fr;
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
-    padding: 0.875rem 0;
-    border-top: 1px solid var(--color-rule);
-    align-items: baseline;
+    font-style: normal;
   }
 
-  .detail-row:last-child {
-    border-bottom: 1px solid var(--color-rule);
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
   }
 
-  .detail-label {
-    font-family: var(--font-body);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-ink-faint);
-  }
-
-  .detail-value {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    font-weight: 400;
-    color: var(--color-ink-muted);
+  .contact-method i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    width: 20px;
+    flex-shrink: 0;
   }
 
   .contact-link {
-    color: var(--color-ink);
-    border-bottom: 1px solid var(--color-rule);
-    transition: border-color 0.2s, color 0.2s;
-    padding-bottom: 1px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
   }
 
   .contact-link:hover {
-    color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
+    color: var(--color-primary);
   }
 
-  /* Form wrapper */
+  /* Form wrapper — the form itself is styled via ContactForm inline styles */
   .contact-form-wrap {
-    position: relative;
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Footer */
+  .site-footer {
+    background: var(--color-bg-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem 0;
+    color: white;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  .footer-copy {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+    transform: translateY(-2px);
   }
 </style>

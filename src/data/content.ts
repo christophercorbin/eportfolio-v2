@@ -217,9 +217,9 @@ export const siteContent = {
   ],
   projects: [
     {
-      title: "MathMentor: Socratic AI Math Tutor",
+      title: "MathMentor Barbados: Socratic AI Math Tutor",
       description:
-        "Students learn more from guided struggle than from handed-over answers. Built a Socratic AI math tutor powered by Claude on Amazon Bedrock: a serverless Lambda backend enforces one-hint-at-a-time pedagogy, a KaTeX chat frontend renders the math, and OpenTofu deploys the whole stack behind CloudFront.",
+        "Students learn more from guided struggle than from handed-over answers. Built a Bajan Socratic math tutor powered by Claude on Amazon Bedrock, syllabus-aware from Common Entrance to CSEC/CXC: a serverless Lambda backend enforces one-hint-at-a-time pedagogy, a KaTeX chat frontend renders the math, and OpenTofu deploys the stack behind CloudFront.",
       tech: [
         "Claude on Amazon Bedrock",
         "AWS Lambda",

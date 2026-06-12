@@ -232,13 +232,21 @@ export const siteContent = {
       },
     },
     {
-      title: "Cloud-Native Task Management System",
+      title: "christophercorbin.cloud — This Site",
       description:
-        "Many teams lack a lightweight, self-hosted task tracker that follows cloud best practices. Built a full-stack task application using AWS CDK multi-stack architecture (EC2, RDS, S3, IAM) — demonstrating reproducible IaC and Well-Architected principles end to end.",
-      tech: ["AWS CDK", "Multi-Stack Architecture", "EC2", "RDS", "S3", "IAM"],
+        "A portfolio should demonstrate the engineering it advertises. Rebuilt this site from a multi-account S3 + CloudFront setup into a single modern stack: Astro 6 static frontend on AWS Amplify Hosting, a serverless contact pipeline (Lambda Function URL + DynamoDB + SES) defined with Amplify Gen 2, and CI/CD on every push — shipping a 100%-static, sub-second-load site.",
+      tech: [
+        "Astro",
+        "AWS Amplify Gen 2",
+        "Lambda",
+        "DynamoDB",
+        "SES",
+        "GitHub Actions",
+        "OpenTofu",
+      ],
       links: {
-        github: "https://github.com/christophercorbin/-taskchecklist",
-        demo: "https://github.com/christophercorbin/-taskchecklist#readme",
+        github: "https://github.com/christophercorbin/eportfolio-v2",
+        demo: "https://github.com/christophercorbin/eportfolio-v2#readme",
       },
     },
     {

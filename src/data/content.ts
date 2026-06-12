@@ -3,22 +3,23 @@ export const siteContent = {
     siteName: "Christopher Corbin",
     title: "Christopher Corbin - AWS Solutions Architect & Security Engineer",
     description:
-      "AWS-certified Cloud & Security Engineer specializing in secure architectures, DevOps automation, and SOC 2 compliance",
+      "AWS-certified Cloud & Security Engineer building secure public-sector infrastructure at GovTech Barbados — SOC 2 compliance, DevOps automation, and Well-Architected AWS at scale",
     domain: "christophercorbin.cloud",
+    url: "https://christophercorbin.cloud",
+    ogImage: "/images/og-card.jpg",
   },
   hero: {
     name: "Christopher Corbin",
     title: "AWS Solutions Architect & Security Engineer",
     subtitle:
-      "AWS-certified engineer with expertise in secure multi-stack architectures, DevOps automation, and SOC 2 compliance",
+      "I build secure, automated cloud infrastructure for public-sector digital services — with SOC 2 compliance, 500+ CVEs remediated, and $150K in annual cloud savings on the scoreboard",
     ctas: [
       { label: "View My Work", href: "#projects", primary: true },
       { label: "Get In Touch", href: "#contact", primary: false },
     ],
-    photo: "/images/profile-photo.jpg",
   },
   about: {
-    bio: "AWS-certified Cloud & Security Engineer with a proven track record of deploying multi-stack secure architectures using AWS CDK and Terraform, aligned to AWS Well-Architected best practices. I've strengthened enterprise security across a 14-account AWS organization with 2,000+ resources by hardening container images, automating patching, and remediating 500+ CVEs within 30 days.\n\nAchieved SOC 2 compliance with a 97.2% audit score and zero critical findings while implementing CI/CD pipelines and production-grade workloads to accelerate releases and improve resilience. Currently pursuing AWS DevOps Engineer Professional certification to further enhance my expertise in cloud automation and security.",
+    bio: "I'm a Cloud Infrastructure Developer at GovTech Barbados, where I design, provision, and secure the cloud infrastructure behind public-sector digital services — built end to end with Terraform and CloudFormation and shipped through automated CI/CD pipelines.\n\nBefore that, I strengthened enterprise security across a 14-account AWS organization with 2,000+ resources: achieving SOC 2 compliance with a 97.2% audit score and zero critical findings, remediating 500+ CVEs within 30 days, and cutting cloud spend by ~$150K annually. Currently pursuing the AWS DevOps Engineer Professional certification.",
     stats: [
       { value: "2000+", label: "AWS Resources Managed" },
       { value: "500+", label: "CVEs Remediated" },
@@ -77,16 +78,9 @@ export const siteContent = {
       dates: "Jul 2021 – Present",
       location: "Barbados",
       bullets: [
-        "Delivered technical guidance for off-road tours, ensuring safety and smooth operations",
-        "Reduced equipment downtime by 20% through proactive maintenance strategies",
-        "Designed and led team-building events, improving collaboration and satisfaction",
+        "Lead off-road tour operations and proactive equipment maintenance, cutting downtime by 20%",
       ],
-      tech: [
-        "Operations Management",
-        "Team Leadership",
-        "Safety Protocols",
-        "Equipment Maintenance",
-      ],
+      tech: ["Operations Management", "Team Leadership"],
     },
     {
       company: "iShop",
@@ -94,16 +88,9 @@ export const siteContent = {
       dates: "Oct 2021 – Sep 2024",
       location: "Barbados",
       bullets: [
-        "Delivered customer education and technical support for Apple devices",
-        "Conducted product demonstrations and workshops for customers",
-        "Acted as liaison for escalated technical cases, ensuring customer satisfaction",
+        "Provided technical support, customer education, and escalation handling for Apple devices",
       ],
-      tech: [
-        "Customer Support",
-        "Technical Training",
-        "Apple Ecosystem",
-        "Problem Resolution",
-      ],
+      tech: ["Customer Support", "Technical Training"],
     },
   ],
   skills: [
@@ -320,7 +307,7 @@ export const siteContent = {
   },
   contact: {
     email: "christophercorbin24@gmail.com",
-    emailDisplay: "Christophercorbin@gmail.com",
+    emailDisplay: "christophercorbin24@gmail.com",
     phone: "+1 (246) 248-7457",
     location: "Barbados | Open to relocation",
     socials: {

@@ -1,6 +1,7 @@
 ---
 import { siteContent } from "../data/content";
 import ContactForm from "./ContactForm";
+import Icon from "./Icon.astro";
 
 const { contact } = siteContent;
 ---
@@ -20,20 +21,20 @@ const { contact } = siteContent;
 
         <address class="contact-methods" aria-label="Contact details">
           <div class="contact-method">
-            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <Icon name="envelope" />
             <a href={`mailto:${contact.email}`} class="contact-link">
               {contact.emailDisplay}
             </a>
           </div>
           <div class="contact-method">
-            <i class="fas fa-phone" aria-hidden="true"></i>
+            <Icon name="phone" />
             <a href={`tel:${contact.phone.replace(/\s/g, "")}`} class="contact-link">
               {contact.phone}
             </a>
           </div>
           {contact.socials.github && (
             <div class="contact-method">
-              <i class="fab fa-github" aria-hidden="true"></i>
+              <Icon name="github" />
               <a
                 href={contact.socials.github}
                 target="_blank"
@@ -45,7 +46,7 @@ const { contact } = siteContent;
             </div>
           )}
           <div class="contact-method">
-            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <Icon name="location-dot" />
             <span>{contact.location}</span>
           </div>
         </address>
@@ -62,18 +63,18 @@ const { contact } = siteContent;
 <!-- Footer -->
 <footer class="site-footer">
   <div class="site-container footer-inner">
-    <p class="footer-copy">&copy; 2026 Christopher Corbin. Deployed via GitHub CI/CD &rarr; AWS S3 + CloudFront.</p>
+    <p class="footer-copy">&copy; 2026 Christopher Corbin. Built with Astro &middot; Deployed on AWS Amplify.</p>
     <div class="footer-links">
       {contact.socials.github && (
         <a href={contact.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i>
+          <Icon name="github" />
         </a>
       )}
       <a href={`mailto:${contact.email}`} aria-label="Email">
-        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <Icon name="envelope" />
       </a>
       <a href={`tel:${contact.phone.replace(/\s/g, "")}`} aria-label="Phone">
-        <i class="fas fa-phone" aria-hidden="true"></i>
+        <Icon name="phone" />
       </a>
     </div>
   </div>
@@ -135,11 +136,10 @@ const { contact } = siteContent;
     font-size: 0.95rem;
   }
 
-  .contact-method i {
+  .contact-method :global(.icon) {
     color: var(--color-primary);
-    font-size: 1.1rem;
+    height: 1.1em;
     width: 20px;
-    flex-shrink: 0;
   }
 
   .contact-link {

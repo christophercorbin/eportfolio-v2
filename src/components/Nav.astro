@@ -1,5 +1,6 @@
 ---
 import { siteContent } from "../data/content";
+import Icon from "./Icon.astro";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -35,7 +36,7 @@ const navLinks = [
         class="nav-resume"
         aria-label="Download resume PDF"
       >
-        <i class="fas fa-file-download" aria-hidden="true"></i> Resume
+        <Icon name="file-arrow-down" /> Resume
       </a>
 
       <!-- Mobile hamburger -->
@@ -66,7 +67,7 @@ const navLinks = [
             download
             class="mobile-link mobile-resume-link"
           >
-            <i class="fas fa-file-download" aria-hidden="true"></i> Download Resume
+            <Icon name="file-arrow-down" /> Download Resume
           </a>
         </li>
       </ul>

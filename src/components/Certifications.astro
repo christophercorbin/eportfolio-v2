@@ -1,5 +1,6 @@
 ---
 import { siteContent } from "../data/content";
+import Icon from "./Icon.astro";
 
 const { badges } = siteContent.certifications;
 
@@ -32,11 +33,11 @@ const ciscoCerts = badges.filter((b) => b.issuer === "Cisco");
               </div>
             ) : cert.name.includes("Cybersecurity") ? (
               <div class="custom-badge cybersec-badge">
-                <i class="fas fa-user-shield fa-2x" aria-hidden="true"></i>
+                <Icon name="user-shield" size={2} />
               </div>
             ) : cert.name.includes("BSc") || cert.name.includes("Computer Science") ? (
               <div class="custom-badge education-badge">
-                <i class="fas fa-graduation-cap fa-2x" aria-hidden="true"></i>
+                <Icon name="graduation-cap" size={2} />
               </div>
             ) : cert.inProgress ? (
               <div class="custom-badge inprogress-badge">
@@ -48,7 +49,7 @@ const ciscoCerts = badges.filter((b) => b.issuer === "Cisco");
               </div>
             ) : (
               <div class="custom-badge default-badge">
-                <i class="fas fa-certificate fa-2x" aria-hidden="true"></i>
+                <Icon name="certificate" size={2} />
               </div>
             )}
           </div>

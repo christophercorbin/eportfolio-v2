@@ -1,7 +1,11 @@
 ---
 import { siteContent } from "../data/content";
+import Icon from "./Icon.astro";
+import type { IconName } from "./icon-names";
 
 const { experience } = siteContent;
+
+const roleIcons: IconName[] = ["building-columns", "cloud", "route", "apple-whole"];
 ---
 
 <section id="experience" class="experience-section" aria-labelledby="experience-heading">
@@ -14,13 +18,7 @@ const { experience } = siteContent;
           <!-- Timeline marker -->
           <div class="timeline-marker" aria-hidden="true">
             <div class="timeline-icon">
-              <i class:list={[
-                "fas",
-                i === 0 ? "fa-building-columns" :
-                i === 1 ? "fa-cloud" :
-                i === 2 ? "fa-route" :
-                "fa-apple-whole"
-              ]}></i>
+              <Icon name={roleIcons[i] ?? "building-columns"} />
             </div>
           </div>
 
@@ -33,7 +31,7 @@ const { experience } = siteContent;
             <ul class="role-bullets" aria-label={`Responsibilities at ${role.company}`}>
               {role.bullets.map((bullet) => (
                 <li class="role-bullet">
-                  <i class="fas fa-check" aria-hidden="true"></i>
+                  <Icon name="check" />
                   <span>{bullet}</span>
                 </li>
               ))}
@@ -223,11 +221,10 @@ const { experience } = siteContent;
     transform: translateX(4px);
   }
 
-  .role-bullet i {
+  .role-bullet :global(.icon) {
     color: var(--color-primary);
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-    flex-shrink: 0;
+    height: 0.75em;
+    margin-top: 0.35rem;
   }
 
   .role-bullet span {

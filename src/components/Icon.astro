@@ -1,0 +1,76 @@
+---
+/**
+ * Inline SVG icon component.
+ *
+ * SVG path data sourced from Font Awesome Free 6 (CC BY 4.0),
+ * vendored into src/icons/ so no CDN stylesheet is needed.
+ */
+import Aws from "../icons/aws.svg";
+import Github from "../icons/github.svg";
+import ShieldHalved from "../icons/shield-halved.svg";
+import CodeBranch from "../icons/code-branch.svg";
+import ChartLine from "../icons/chart-line.svg";
+import Code from "../icons/code.svg";
+import Users from "../icons/users.svg";
+import Server from "../icons/server.svg";
+import Lightbulb from "../icons/lightbulb.svg";
+import Star from "../icons/star.svg";
+import FileArrowDown from "../icons/file-arrow-down.svg";
+import LocationDot from "../icons/location-dot.svg";
+import BuildingColumns from "../icons/building-columns.svg";
+import Cloud from "../icons/cloud.svg";
+import Route from "../icons/route.svg";
+import AppleWhole from "../icons/apple-whole.svg";
+import Check from "../icons/check.svg";
+import UserShield from "../icons/user-shield.svg";
+import GraduationCap from "../icons/graduation-cap.svg";
+import Certificate from "../icons/certificate.svg";
+import Envelope from "../icons/envelope.svg";
+import Phone from "../icons/phone.svg";
+import ExternalLink from "../icons/up-right-from-square.svg";
+import ListCheck from "../icons/list-check.svg";
+import type { IconName } from "./icon-names";
+
+const icons: Record<IconName, typeof Aws> = {
+  aws: Aws,
+  github: Github,
+  "shield-halved": ShieldHalved,
+  "code-branch": CodeBranch,
+  "chart-line": ChartLine,
+  code: Code,
+  users: Users,
+  server: Server,
+  lightbulb: Lightbulb,
+  star: Star,
+  "file-arrow-down": FileArrowDown,
+  "location-dot": LocationDot,
+  "building-columns": BuildingColumns,
+  cloud: Cloud,
+  route: Route,
+  "apple-whole": AppleWhole,
+  check: Check,
+  "user-shield": UserShield,
+  "graduation-cap": GraduationCap,
+  certificate: Certificate,
+  envelope: Envelope,
+  phone: Phone,
+  "external-link": ExternalLink,
+  "list-check": ListCheck,
+};
+
+interface Props {
+  name: IconName;
+  /** Height in em units (default 1) */
+  size?: number;
+  class?: string;
+}
+
+const { name, size, class: className } = Astro.props;
+const Svg = icons[name];
+---
+
+<Svg
+  class:list={["icon", className]}
+  style={size ? `height:${size}em` : undefined}
+  aria-hidden="true"
+/>

@@ -1,10 +1,12 @@
 ---
 import { siteContent } from "../data/content";
+import Icon from "./Icon.astro";
+import type { IconName } from "./icon-names";
 
 const { projects } = siteContent;
 
 // Project icons matching v1
-const projectIcons = ["fa-shield-alt", "fa-tasks", "fa-graduation-cap"];
+const projectIcons: IconName[] = ["shield-halved", "list-check", "graduation-cap"];
 ---
 
 <section id="projects" class="projects-section" aria-labelledby="projects-heading">
@@ -16,8 +18,8 @@ const projectIcons = ["fa-shield-alt", "fa-tasks", "fa-graduation-cap"];
         <div class:list={["project-card", "reveal", `reveal-delay-${Math.min(i + 1, 6)}`]}>
           <!-- Gradient header with icon -->
           <div class="project-image">
-            <i class:list={["fas", projectIcons[i] ?? "fa-code", "fa-3x"]} aria-hidden="true"></i>
-            <span class="project-badge">Live Repo</span>
+            <Icon name={projectIcons[i] ?? "code"} size={3} />
+            <span class="project-badge">Open Source</span>
           </div>
 
           <!-- Content -->
@@ -39,7 +41,7 @@ const projectIcons = ["fa-shield-alt", "fa-tasks", "fa-graduation-cap"];
                 class="project-link"
                 aria-label={`View ${project.title} on GitHub`}
               >
-                <i class="fab fa-github" aria-hidden="true"></i> View Code
+                <Icon name="github" /> View Code
               </a>
               {project.links.demo && (project.links.demo as string) !== (project.links.github as string) && (
                 <a
@@ -49,7 +51,7 @@ const projectIcons = ["fa-shield-alt", "fa-tasks", "fa-graduation-cap"];
                   class="project-link"
                   aria-label={`View ${project.title} documentation`}
                 >
-                  <i class="fas fa-external-link-alt" aria-hidden="true"></i> Documentation
+                  <Icon name="external-link" /> Documentation
                 </a>
               )}
             </div>

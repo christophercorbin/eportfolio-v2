@@ -1,9 +1,10 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
 
 @theme {
   /* Typography */
-  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* AWS color palette */
   --color-primary: #ff9900;
@@ -66,6 +67,16 @@ hr {
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+
+/* Inline SVG icons (replaces Font Awesome) */
+.icon {
+  height: 1em;
+  width: auto;
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
 }
 
 /* Scroll reveal */

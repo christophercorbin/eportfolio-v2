@@ -3,7 +3,7 @@ import { Duration } from "aws-cdk-lib";
 import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { FunctionUrlAuthType, HttpMethod } from "aws-cdk-lib/aws-lambda";
-import { contactForm } from "./functions/contact-form/resource";
+import { contactForm } from "./functions/contact-form/resource.js";
 
 const CONTACT_EMAIL = "christophercorbin24@gmail.com";
 

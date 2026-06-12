@@ -169,6 +169,9 @@ export const siteContent = {
         "Infrastructure Automation",
         "Security Scripts",
         "ML Integration",
+        "Claude API",
+        "Model Context Protocol (MCP)",
+        "AI-Assisted Engineering",
       ],
     },
     {
@@ -312,6 +315,21 @@ export const siteContent = {
         inProgress: false,
       },
     ],
+    anthropicTraining: {
+      title: "Anthropic Academy — AI Engineering Training",
+      blurb:
+        "Certified coursework in building with Claude: API integration, agentic coding workflows, and the Model Context Protocol.",
+      courses: [
+        { name: "Building with the Claude API", completed: "Apr 2026" },
+        { name: "Claude Code in Action", completed: "Apr 2026" },
+        { name: "Introduction to Model Context Protocol", completed: "Apr 2026" },
+        { name: "Introduction to Agent Skills", completed: "Apr 2026" },
+        { name: "Claude 101", completed: "Apr 2026" },
+        { name: "Claude Code 101", completed: "Apr 2026" },
+        { name: "Introduction to Claude Cowork", completed: "Apr 2026" },
+        { name: "Claude with Amazon Bedrock", completed: null },
+      ],
+    },
   },
   contact: {
     email: "christophercorbin24@gmail.com",

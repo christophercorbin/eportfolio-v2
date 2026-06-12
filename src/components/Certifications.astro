@@ -2,7 +2,7 @@
 import { siteContent } from "../data/content";
 import Icon from "./Icon.astro";
 
-const { badges } = siteContent.certifications;
+const { badges, anthropicTraining } = siteContent.certifications;
 
 // Separate main certs (non-Cisco) from Cisco badges
 const mainCerts = badges.filter((b) => b.issuer !== "Cisco");
@@ -69,6 +69,25 @@ const ciscoCerts = badges.filter((b) => b.issuer === "Cisco");
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- Anthropic Academy training -->
+    <div class="training-section reveal reveal-delay-1">
+      <h3 class="training-title">{anthropicTraining.title}</h3>
+      <p class="training-blurb">{anthropicTraining.blurb}</p>
+      <div class="training-grid">
+        {anthropicTraining.courses.map((course) => (
+          <div class:list={["training-card", !course.completed && "training-in-progress"]}>
+            <span class="training-icon">
+              {course.completed ? <Icon name="check" /> : <Icon name="lightbulb" />}
+            </span>
+            <span class="training-name">{course.name}</span>
+            <span class:list={["training-date", !course.completed && "training-date-progress"]}>
+              {course.completed ?? "In Progress"}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
 
     <!-- Cisco badges section -->
@@ -272,6 +291,92 @@ const ciscoCerts = badges.filter((b) => b.issuer === "Cisco");
       flex-direction: column;
       text-align: center;
     }
+  }
+
+  /* Anthropic Academy training */
+  .training-section {
+    margin-top: 2rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid var(--color-bg-secondary);
+  }
+
+  .training-title {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .training-blurb {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    max-width: 60ch;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .training-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+  }
+
+  .training-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .training-in-progress {
+    border: 1.5px dashed var(--color-primary);
+  }
+
+  .training-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9900 0%, #146eb4 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .training-name {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+  }
+
+  .training-date {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    white-space: nowrap;
+  }
+
+  .training-date-progress {
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   /* Cisco section */

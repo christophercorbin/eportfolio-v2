@@ -217,6 +217,23 @@ export const siteContent = {
   ],
   projects: [
     {
+      title: "MathMentor: Socratic AI Math Tutor",
+      description:
+        "Students learn more from guided struggle than from handed-over answers. Built a Socratic AI math tutor powered by Claude on Amazon Bedrock: a serverless Lambda backend enforces one-hint-at-a-time pedagogy, a KaTeX chat frontend renders the math, and OpenTofu deploys the whole stack behind CloudFront.",
+      tech: [
+        "Claude on Amazon Bedrock",
+        "AWS Lambda",
+        "Prompt Engineering",
+        "CloudFront",
+        "OpenTofu",
+        "KaTeX",
+      ],
+      links: {
+        github: "https://github.com/christophercorbin/math-mentor",
+        demo: "https://github.com/christophercorbin/math-mentor#readme",
+      },
+    },
+    {
       title: "SOC2 ML Image Analyzer",
       description:
         "Enterprises need ML image analysis that meets strict compliance requirements. Built a SOC 2-compliant service using Deepface for facial recognition, with containerized deployment on AWS SageMaker and comprehensive security controls, achieving a 97.2% compliance score with sub-5-minute deployments.",

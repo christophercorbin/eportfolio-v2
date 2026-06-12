@@ -25,7 +25,11 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        # npm install (not npm ci) to match amplify.yml — @aws-amplify/data-construct
+        # ships zod 3.24.2 as a bundled dep that conflicts with the 3.25.17 required by
+        # siblings; npm 11 reconciles but older npm in CI doesn't. amplify.yml uses the
+        # same approach.
+        run: npm install --no-audit --no-fund
 
       - name: Type check (astro check)
         run: npx astro check

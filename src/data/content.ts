@@ -224,9 +224,9 @@ export const siteContent = {
         "Claude on Amazon Bedrock",
         "AWS Lambda",
         "Prompt Engineering",
+        "Docker",
         "CloudFront",
         "OpenTofu",
-        "KaTeX",
       ],
       links: {
         github: "https://github.com/christophercorbin/math-mentor",

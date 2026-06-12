@@ -19,11 +19,11 @@ export const siteContent = {
     ],
   },
   about: {
-    bio: "I'm a Cloud Infrastructure Developer at GovTech Barbados, where I design, provision, and secure the cloud infrastructure behind public-sector digital services — built end to end with Terraform and CloudFormation and shipped through automated CI/CD pipelines.\n\nBefore that, I strengthened enterprise security across a 14-account AWS organization with 2,000+ resources: achieving SOC 2 compliance with a 97.2% audit score and zero critical findings, remediating 500+ CVEs within 30 days, and cutting cloud spend by ~$150K annually. Currently pursuing the AWS DevOps Engineer Professional certification.",
+    bio: "I'm a Cloud Infrastructure Developer at GovTech Barbados, where I design, provision, and secure the cloud infrastructure behind public-sector digital services — built end to end with Terraform and CloudFormation and shipped through automated CI/CD pipelines.\n\nBefore that, I strengthened enterprise security across a 14-account AWS organization with 2,000+ resources: achieving SOC 2 compliance with a 97.2% audit score and zero critical findings, remediating 500+ CVEs within 30 days, and cutting cloud spend by ~$150K annually. Currently pursuing the AWS DevOps Engineer Professional certification.\n\nI'm also building at the intersection of cloud and AI: Anthropic-certified in the Claude API, agentic coding, and the Model Context Protocol, and currently training on Claude with Amazon Bedrock — bringing AI-assisted workflows into how infrastructure gets designed, secured, and shipped.",
     stats: [
-      { value: "2000+", label: "AWS Resources Managed" },
-      { value: "500+", label: "CVEs Remediated" },
-      { value: "97.2%", label: "SOC 2 Compliance Score" },
+      { value: "$150K", label: "Annual Cloud Spend Saved" },
+      { value: "500+", label: "CVEs Remediated in Under 30 Days" },
+      { value: "97.2%", label: "SOC 2 Score — Zero Critical Findings" },
     ],
   },
   experience: [

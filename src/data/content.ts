@@ -234,6 +234,40 @@ export const siteContent = {
       },
     },
     {
+      title: "Secure Public-Sector Landing Zone",
+      description:
+        "Government and regulated teams rebuild the same AWS account baseline every time. Built a modular OpenTofu landing zone: organization guardrails as code (SCPs for root denial, region allowlists, IMDSv2), a CIS-aligned detective baseline (CloudTrail, Config, Security Hub), and an AI assistant that turns live findings into SOC 2-style evidence packs using Claude on Bedrock.",
+      tech: [
+        "OpenTofu",
+        "AWS Organizations",
+        "SCPs",
+        "Security Hub",
+        "AWS Config",
+        "Claude on Bedrock",
+      ],
+      links: {
+        github: "https://github.com/christophercorbin/secure-landing-zone",
+        demo: "https://github.com/christophercorbin/secure-landing-zone#readme",
+      },
+    },
+    {
+      title: "Zero-Downtime Delivery Pipeline",
+      description:
+        "Deployments should be boring. Built a progressive-delivery reference pipeline: blue/green ECS Fargate through CodeDeploy with 10% canary traffic shifting, CloudWatch alarm-triggered automatic rollback, and keyless OIDC CI/CD from GitHub Actions, all defined in OpenTofu. Includes a chaos switch that demos a live rollback with zero failed requests on the stable path.",
+      tech: [
+        "ECS Fargate",
+        "CodeDeploy",
+        "Blue/Green Canary",
+        "GitHub Actions OIDC",
+        "CloudWatch",
+        "OpenTofu",
+      ],
+      links: {
+        github: "https://github.com/christophercorbin/zero-downtime-pipeline",
+        demo: "https://github.com/christophercorbin/zero-downtime-pipeline#readme",
+      },
+    },
+    {
       title: "SOC2 ML Image Analyzer",
       description:
         "Enterprises need ML image analysis that meets strict compliance requirements. Built a SOC 2-compliant service using Deepface for facial recognition, with containerized deployment on AWS SageMaker and comprehensive security controls, achieving a 97.2% compliance score with sub-5-minute deployments.",

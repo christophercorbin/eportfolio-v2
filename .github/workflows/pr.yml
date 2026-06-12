@@ -1,0 +1,38 @@
+name: PR
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: pr-${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        # npm install (not npm ci) to match amplify.yml — @aws-amplify/data-construct
+        # ships zod 3.24.2 as a bundled dep that conflicts with the 3.25.17 required by
+        # siblings; npm 11 reconciles but older npm in CI doesn't. amplify.yml uses the
+        # same approach.
+        run: npm install --no-audit --no-fund
+
+      - name: Type check (astro check)
+        run: npx astro check
+
+      - name: Build site
+        run: npm run build

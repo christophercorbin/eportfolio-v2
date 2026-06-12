@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type FormState = "idle" | "submitted";
+type FormState = "idle" | "sending" | "success" | "error";
 
 interface FormFields {
   name: string;
@@ -8,8 +8,18 @@ interface FormFields {
   message: string;
 }
 
+/**
+ * Contact API endpoint (Lambda Function URL from the Amplify Gen 2 backend).
+ * Injected at build time via PUBLIC_CONTACT_API_URL — see amplify.yml,
+ * which extracts it from amplify_outputs.json after backend deploy.
+ */
+const API_URL: string | undefined = import.meta.env.PUBLIC_CONTACT_API_URL;
+
+const FALLBACK_EMAIL = "christophercorbin24@gmail.com";
+
 export default function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [fields, setFields] = useState<FormFields>({
     name: "",
     email: "",
@@ -22,29 +32,62 @@ export default function ContactForm() {
     setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Stub: real API wiring lands in PR 2
-    setState("submitted");
+    if (state === "sending") return;
+
+    if (!API_URL) {
+      // Backend not deployed yet — fall back to a pre-filled mailto.
+      const subject = encodeURIComponent(`Portfolio contact from ${fields.name}`);
+      const body = encodeURIComponent(`${fields.message}\n\n— ${fields.name} (${fields.email})`);
+      window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+      return;
+    }
+
+    setState("sending");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        throw new Error(data?.error ?? `Request failed (${res.status})`);
+      }
+
+      setState("success");
+    } catch (err) {
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong"
+      );
+      setState("error");
+    }
   };
 
   const handleReset = () => {
     setFields({ name: "", email: "", message: "" });
     setState("idle");
+    setErrorMessage("");
   };
 
-  if (state === "submitted") {
+  if (state === "success") {
     return (
       <div className="cf-notice" role="status" aria-live="polite">
         <div className="cf-notice-icon" aria-hidden="true">✓</div>
-        <p className="cf-notice-text">Form submission will be wired up in PR 2</p>
-        <button
-          type="button"
-          className="cf-reset"
-          onClick={handleReset}
-        >
+        <p className="cf-notice-text">
+          Thanks for reaching out — your message has been sent. I'll get back
+          to you soon.
+        </p>
+        <button type="button" className="cf-reset" onClick={handleReset}>
           Send another message
         </button>
+        <style>{noticeStyles}</style>
       </div>
     );
   }
@@ -71,6 +114,7 @@ export default function ContactForm() {
           className="cf-input"
           placeholder="Your Name"
           aria-required="true"
+          disabled={state === "sending"}
         />
       </div>
 
@@ -89,6 +133,7 @@ export default function ContactForm() {
           className="cf-input"
           placeholder="you@example.com"
           aria-required="true"
+          disabled={state === "sending"}
         />
       </div>
 
@@ -106,11 +151,20 @@ export default function ContactForm() {
           className="cf-input cf-textarea"
           placeholder="Your Message"
           aria-required="true"
+          disabled={state === "sending"}
         />
       </div>
 
-      <button type="submit" className="cf-submit">
-        Send Message
+      {state === "error" && (
+        <p className="cf-error" role="alert">
+          Couldn't send your message ({errorMessage}). Please try again, or
+          email me directly at{" "}
+          <a href={`mailto:${FALLBACK_EMAIL}`}>{FALLBACK_EMAIL}</a>.
+        </p>
+      )}
+
+      <button type="submit" className="cf-submit" disabled={state === "sending"}>
+        {state === "sending" ? "Sending…" : "Send Message"}
       </button>
 
       <style>{`
@@ -154,10 +208,26 @@ export default function ContactForm() {
           box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
         }
 
+        .cf-input:disabled {
+          opacity: 0.6;
+        }
+
         .cf-textarea {
           resize: vertical;
           min-height: 120px;
           line-height: 1.6;
+        }
+
+        .cf-error {
+          font-size: 0.9rem;
+          color: #c0392b;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .cf-error a {
+          color: #ff9900;
+          text-decoration: underline;
         }
 
         .cf-submit {
@@ -180,63 +250,69 @@ export default function ContactForm() {
           justify-content: center;
         }
 
-        .cf-submit:hover {
+        .cf-submit:hover:not(:disabled) {
           transform: translateY(-2px);
           box-shadow: 0 15px 40px rgba(255, 153, 0, 0.3);
+        }
+
+        .cf-submit:disabled {
+          opacity: 0.7;
+          cursor: wait;
         }
 
         .cf-submit:focus-visible {
           outline: 2px solid #ff9900;
           outline-offset: 3px;
         }
-
-        /* Submitted state */
-        .cf-notice {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
-          padding: 2rem 0;
-        }
-
-        .cf-notice-icon {
-          width: 3rem;
-          height: 3rem;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #ff9900 0%, #146eb4 100%);
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.25rem;
-          font-weight: 700;
-          box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
-        }
-
-        .cf-notice-text {
-          font-size: 1rem;
-          font-weight: 400;
-          color: #666;
-          line-height: 1.6;
-        }
-
-        .cf-reset {
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: #ff9900;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          text-decoration: underline;
-          text-underline-offset: 3px;
-          transition: color 0.2s;
-        }
-
-        .cf-reset:hover {
-          color: #146eb4;
-        }
       `}</style>
     </form>
   );
 }
+
+const noticeStyles = `
+  .cf-notice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+
+  .cf-notice-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9900 0%, #146eb4 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
+  }
+
+  .cf-notice-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .cf-reset {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ff9900;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .cf-reset:hover {
+    color: #146eb4;
+  }
+`;

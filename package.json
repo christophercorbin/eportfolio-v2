@@ -23,6 +23,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@astrojs/sitemap": "^3.7.3",
+    "@aws-amplify/backend": "^1.16.1",
+    "@aws-amplify/backend-cli": "^1.8.0",
+    "@aws-sdk/client-dynamodb": "^3.1067.0",
+    "@aws-sdk/client-ses": "^3.1067.0",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "aws-cdk-lib": "^2.258.1",
+    "constructs": "^10.6.0",
     "typescript": "^5.9.3"
   }
 }

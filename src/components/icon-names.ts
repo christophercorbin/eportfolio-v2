@@ -1,0 +1,28 @@
+export const iconNames = [
+  "aws",
+  "github",
+  "shield-halved",
+  "code-branch",
+  "chart-line",
+  "code",
+  "users",
+  "server",
+  "lightbulb",
+  "star",
+  "file-arrow-down",
+  "location-dot",
+  "building-columns",
+  "cloud",
+  "route",
+  "apple-whole",
+  "check",
+  "user-shield",
+  "graduation-cap",
+  "certificate",
+  "envelope",
+  "phone",
+  "external-link",
+  "list-check",
+] as const;
+
+export type IconName = (typeof iconNames)[number];

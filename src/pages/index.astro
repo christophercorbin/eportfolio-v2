@@ -8,9 +8,42 @@ import Skills from "../components/Skills.astro";
 import Projects from "../components/Projects.astro";
 import Certifications from "../components/Certifications.astro";
 import Contact from "../components/Contact.astro";
+import { siteContent } from "../data/content";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Christopher Corbin",
+  jobTitle: "AWS Solutions Architect & Security Engineer",
+  description: siteContent.meta.description,
+  url: siteContent.meta.url,
+  email: `mailto:${siteContent.contact.email}`,
+  image: new URL("/images/og-card.jpg", siteContent.meta.url).href,
+  worksFor: {
+    "@type": "Organization",
+    name: "GovTech Barbados",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "BB",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "University of the West Indies, Cave Hill",
+  },
+  sameAs: [siteContent.contact.socials.github].filter(Boolean),
+  knowsAbout: [
+    "AWS",
+    "Cloud Security",
+    "SOC 2 Compliance",
+    "Infrastructure as Code",
+    "DevSecOps",
+  ],
+};
 ---
 
 <BaseLayout>
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
   <Nav />
   <main id="main-content">
     <Hero />

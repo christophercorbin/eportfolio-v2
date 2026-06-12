@@ -3,26 +3,27 @@ export const siteContent = {
     siteName: "Christopher Corbin",
     title: "Christopher Corbin - AWS Solutions Architect & Security Engineer",
     description:
-      "AWS-certified Cloud & Security Engineer specializing in secure architectures, DevOps automation, and SOC 2 compliance",
+      "AWS-certified Cloud & Security Engineer building secure public-sector infrastructure at GovTech Barbados, specializing in SOC 2 compliance, DevOps automation, and Well-Architected AWS at scale",
     domain: "christophercorbin.cloud",
+    url: "https://christophercorbin.cloud",
+    ogImage: "/images/og-card.jpg",
   },
   hero: {
     name: "Christopher Corbin",
     title: "AWS Solutions Architect & Security Engineer",
     subtitle:
-      "AWS-certified engineer with expertise in secure multi-stack architectures, DevOps automation, and SOC 2 compliance",
+      "I build secure, automated cloud infrastructure for public-sector digital services, backed by SOC 2 compliance, 500+ remediated CVEs, and $150K in annual cloud savings",
     ctas: [
       { label: "View My Work", href: "#projects", primary: true },
       { label: "Get In Touch", href: "#contact", primary: false },
     ],
-    photo: "/images/profile-photo.jpg",
   },
   about: {
-    bio: "AWS-certified Cloud & Security Engineer with a proven track record of deploying multi-stack secure architectures using AWS CDK and Terraform, aligned to AWS Well-Architected best practices. I've strengthened enterprise security across a 14-account AWS organization with 2,000+ resources by hardening container images, automating patching, and remediating 500+ CVEs within 30 days.\n\nAchieved SOC 2 compliance with a 97.2% audit score and zero critical findings while implementing CI/CD pipelines and production-grade workloads to accelerate releases and improve resilience. Currently pursuing AWS DevOps Engineer Professional certification to further enhance my expertise in cloud automation and security.",
+    bio: "I'm a Cloud Infrastructure Developer at GovTech Barbados, where I design, provision, and secure the cloud infrastructure behind public-sector digital services. Everything is defined as code with Terraform and CloudFormation and shipped through automated CI/CD pipelines.\n\nBefore that, I strengthened enterprise security across a 14-account AWS organization with 2,000+ resources: achieving SOC 2 compliance with a 97.2% audit score and zero critical findings, remediating 500+ CVEs within 30 days, and cutting cloud spend by approximately $150K annually. I am currently pursuing the AWS DevOps Engineer Professional certification.\n\nI also build at the intersection of cloud and AI. Anthropic-certified across the Claude API, agentic coding, the Model Context Protocol, and Claude on Amazon Bedrock, I bring AI-assisted workflows into how infrastructure is designed, secured, and shipped.",
     stats: [
-      { value: "2000+", label: "AWS Resources Managed" },
-      { value: "500+", label: "CVEs Remediated" },
-      { value: "97.2%", label: "SOC 2 Compliance Score" },
+      { value: "$150K", label: "Annual Cloud Spend Saved" },
+      { value: "500+", label: "CVEs Remediated in Under 30 Days" },
+      { value: "97.2%", label: "SOC 2 Audit Score, Zero Critical Findings" },
     ],
   },
   experience: [
@@ -77,16 +78,9 @@ export const siteContent = {
       dates: "Jul 2021 – Present",
       location: "Barbados",
       bullets: [
-        "Delivered technical guidance for off-road tours, ensuring safety and smooth operations",
-        "Reduced equipment downtime by 20% through proactive maintenance strategies",
-        "Designed and led team-building events, improving collaboration and satisfaction",
+        "Lead off-road tour operations and proactive equipment maintenance, cutting downtime by 20%",
       ],
-      tech: [
-        "Operations Management",
-        "Team Leadership",
-        "Safety Protocols",
-        "Equipment Maintenance",
-      ],
+      tech: ["Operations Management", "Team Leadership"],
     },
     {
       company: "iShop",
@@ -94,16 +88,9 @@ export const siteContent = {
       dates: "Oct 2021 – Sep 2024",
       location: "Barbados",
       bullets: [
-        "Delivered customer education and technical support for Apple devices",
-        "Conducted product demonstrations and workshops for customers",
-        "Acted as liaison for escalated technical cases, ensuring customer satisfaction",
+        "Provided technical support, customer education, and escalation handling for Apple devices",
       ],
-      tech: [
-        "Customer Support",
-        "Technical Training",
-        "Apple Ecosystem",
-        "Problem Resolution",
-      ],
+      tech: ["Customer Support", "Technical Training"],
     },
   ],
   skills: [
@@ -182,6 +169,9 @@ export const siteContent = {
         "Infrastructure Automation",
         "Security Scripts",
         "ML Integration",
+        "Claude API",
+        "Model Context Protocol (MCP)",
+        "AI-Assisted Engineering",
       ],
     },
     {
@@ -227,9 +217,26 @@ export const siteContent = {
   ],
   projects: [
     {
+      title: "MathMentor Barbados: Socratic AI Math Tutor",
+      description:
+        "Students learn more from guided struggle than from handed-over answers. Built a Bajan Socratic math tutor powered by Claude on Amazon Bedrock, syllabus-aware from Common Entrance to CSEC/CXC: a serverless Lambda backend enforces one-hint-at-a-time pedagogy, a KaTeX chat frontend renders the math, and OpenTofu deploys the stack behind CloudFront.",
+      tech: [
+        "Claude on Amazon Bedrock",
+        "AWS Lambda",
+        "Prompt Engineering",
+        "Docker",
+        "CloudFront",
+        "OpenTofu",
+      ],
+      links: {
+        github: "https://github.com/christophercorbin/math-mentor",
+        demo: "https://github.com/christophercorbin/math-mentor#readme",
+      },
+    },
+    {
       title: "SOC2 ML Image Analyzer",
       description:
-        "Enterprises need ML image analysis that meets strict compliance requirements. Built a SOC 2-compliant service using Deepface for facial recognition, with containerized deployment on AWS SageMaker and comprehensive security controls — achieving a 97.2% compliance score with sub-5-minute deployments.",
+        "Enterprises need ML image analysis that meets strict compliance requirements. Built a SOC 2-compliant service using Deepface for facial recognition, with containerized deployment on AWS SageMaker and comprehensive security controls, achieving a 97.2% compliance score with sub-5-minute deployments.",
       tech: [
         "Deepface ML",
         "Docker Security Hardening",
@@ -245,19 +252,27 @@ export const siteContent = {
       },
     },
     {
-      title: "Cloud-Native Task Management System",
+      title: "christophercorbin.cloud (This Site)",
       description:
-        "Many teams lack a lightweight, self-hosted task tracker that follows cloud best practices. Built a full-stack task application using AWS CDK multi-stack architecture (EC2, RDS, S3, IAM) — demonstrating reproducible IaC and Well-Architected principles end to end.",
-      tech: ["AWS CDK", "Multi-Stack Architecture", "EC2", "RDS", "S3", "IAM"],
+        "A portfolio should demonstrate the engineering it advertises. Rebuilt this site from a multi-account S3 + CloudFront setup into a single modern stack: Astro 6 static frontend on AWS Amplify Hosting, a serverless contact pipeline (Lambda Function URL + DynamoDB + SES) defined with Amplify Gen 2, and CI/CD on every push, shipping a fully static site with sub-second loads.",
+      tech: [
+        "Astro",
+        "AWS Amplify Gen 2",
+        "Lambda",
+        "DynamoDB",
+        "SES",
+        "GitHub Actions",
+        "OpenTofu",
+      ],
       links: {
-        github: "https://github.com/christophercorbin/-taskchecklist",
-        demo: "https://github.com/christophercorbin/-taskchecklist#readme",
+        github: "https://github.com/christophercorbin/eportfolio-v2",
+        demo: "https://github.com/christophercorbin/eportfolio-v2#readme",
       },
     },
     {
       title: "Secure Moodle Deployment",
       description:
-        "Educational institutions need LMS platforms that are both highly available and secure. Designed an enterprise-grade Moodle deployment with VPC networking, ALB, Aurora MySQL, and Systems Manager automation — delivering a production-ready platform with zero-downtime updates.",
+        "Educational institutions need LMS platforms that are both highly available and secure. Designed an enterprise-grade Moodle deployment with VPC networking, ALB, Aurora MySQL, and Systems Manager automation, delivering a production-ready platform with zero-downtime updates.",
       tech: ["VPC", "ALB", "Aurora MySQL", "Systems Manager"],
       links: {
         github: "https://github.com/christophercorbin/moodle-lms-on-aws",
@@ -317,10 +332,25 @@ export const siteContent = {
         inProgress: false,
       },
     ],
+    anthropicTraining: {
+      title: "Anthropic Academy: AI Engineering Training",
+      blurb:
+        "Certified coursework in building with Claude: API integration, agentic coding workflows, and the Model Context Protocol.",
+      courses: [
+        { name: "Building with the Claude API", completed: "Apr 2026" },
+        { name: "Claude Code in Action", completed: "Apr 2026" },
+        { name: "Introduction to Model Context Protocol", completed: "Apr 2026" },
+        { name: "Introduction to Agent Skills", completed: "Apr 2026" },
+        { name: "Claude 101", completed: "Apr 2026" },
+        { name: "Claude Code 101", completed: "Apr 2026" },
+        { name: "Introduction to Claude Cowork", completed: "Apr 2026" },
+        { name: "Claude with Amazon Bedrock", completed: "Jun 2026" },
+      ],
+    },
   },
   contact: {
     email: "christophercorbin24@gmail.com",
-    emailDisplay: "Christophercorbin@gmail.com",
+    emailDisplay: "christophercorbin24@gmail.com",
     phone: "+1 (246) 248-7457",
     location: "Barbados | Open to relocation",
     socials: {

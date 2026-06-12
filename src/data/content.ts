@@ -3,7 +3,7 @@ export const siteContent = {
     siteName: "Christopher Corbin",
     title: "Christopher Corbin - AWS Solutions Architect & Security Engineer",
     description:
-      "AWS-certified Cloud & Security Engineer building secure public-sector infrastructure at GovTech Barbados — SOC 2 compliance, DevOps automation, and Well-Architected AWS at scale",
+      "AWS-certified Cloud & Security Engineer building secure public-sector infrastructure at GovTech Barbados, specializing in SOC 2 compliance, DevOps automation, and Well-Architected AWS at scale",
     domain: "christophercorbin.cloud",
     url: "https://christophercorbin.cloud",
     ogImage: "/images/og-card.jpg",
@@ -12,18 +12,18 @@ export const siteContent = {
     name: "Christopher Corbin",
     title: "AWS Solutions Architect & Security Engineer",
     subtitle:
-      "I build secure, automated cloud infrastructure for public-sector digital services — with SOC 2 compliance, 500+ CVEs remediated, and $150K in annual cloud savings on the scoreboard",
+      "I build secure, automated cloud infrastructure for public-sector digital services, backed by SOC 2 compliance, 500+ remediated CVEs, and $150K in annual cloud savings",
     ctas: [
       { label: "View My Work", href: "#projects", primary: true },
       { label: "Get In Touch", href: "#contact", primary: false },
     ],
   },
   about: {
-    bio: "I'm a Cloud Infrastructure Developer at GovTech Barbados, where I design, provision, and secure the cloud infrastructure behind public-sector digital services — built end to end with Terraform and CloudFormation and shipped through automated CI/CD pipelines.\n\nBefore that, I strengthened enterprise security across a 14-account AWS organization with 2,000+ resources: achieving SOC 2 compliance with a 97.2% audit score and zero critical findings, remediating 500+ CVEs within 30 days, and cutting cloud spend by ~$150K annually. Currently pursuing the AWS DevOps Engineer Professional certification.\n\nI'm also building at the intersection of cloud and AI — Anthropic-certified across the Claude API, agentic coding, the Model Context Protocol, and Claude on Amazon Bedrock — bringing AI-assisted workflows into how infrastructure gets designed, secured, and shipped.",
+    bio: "I'm a Cloud Infrastructure Developer at GovTech Barbados, where I design, provision, and secure the cloud infrastructure behind public-sector digital services. Everything is defined as code with Terraform and CloudFormation and shipped through automated CI/CD pipelines.\n\nBefore that, I strengthened enterprise security across a 14-account AWS organization with 2,000+ resources: achieving SOC 2 compliance with a 97.2% audit score and zero critical findings, remediating 500+ CVEs within 30 days, and cutting cloud spend by approximately $150K annually. I am currently pursuing the AWS DevOps Engineer Professional certification.\n\nI also build at the intersection of cloud and AI. Anthropic-certified across the Claude API, agentic coding, the Model Context Protocol, and Claude on Amazon Bedrock, I bring AI-assisted workflows into how infrastructure is designed, secured, and shipped.",
     stats: [
       { value: "$150K", label: "Annual Cloud Spend Saved" },
       { value: "500+", label: "CVEs Remediated in Under 30 Days" },
-      { value: "97.2%", label: "SOC 2 Score — Zero Critical Findings" },
+      { value: "97.2%", label: "SOC 2 Audit Score, Zero Critical Findings" },
     ],
   },
   experience: [
@@ -219,7 +219,7 @@ export const siteContent = {
     {
       title: "SOC2 ML Image Analyzer",
       description:
-        "Enterprises need ML image analysis that meets strict compliance requirements. Built a SOC 2-compliant service using Deepface for facial recognition, with containerized deployment on AWS SageMaker and comprehensive security controls — achieving a 97.2% compliance score with sub-5-minute deployments.",
+        "Enterprises need ML image analysis that meets strict compliance requirements. Built a SOC 2-compliant service using Deepface for facial recognition, with containerized deployment on AWS SageMaker and comprehensive security controls, achieving a 97.2% compliance score with sub-5-minute deployments.",
       tech: [
         "Deepface ML",
         "Docker Security Hardening",
@@ -235,9 +235,9 @@ export const siteContent = {
       },
     },
     {
-      title: "christophercorbin.cloud — This Site",
+      title: "christophercorbin.cloud (This Site)",
       description:
-        "A portfolio should demonstrate the engineering it advertises. Rebuilt this site from a multi-account S3 + CloudFront setup into a single modern stack: Astro 6 static frontend on AWS Amplify Hosting, a serverless contact pipeline (Lambda Function URL + DynamoDB + SES) defined with Amplify Gen 2, and CI/CD on every push — shipping a 100%-static, sub-second-load site.",
+        "A portfolio should demonstrate the engineering it advertises. Rebuilt this site from a multi-account S3 + CloudFront setup into a single modern stack: Astro 6 static frontend on AWS Amplify Hosting, a serverless contact pipeline (Lambda Function URL + DynamoDB + SES) defined with Amplify Gen 2, and CI/CD on every push, shipping a fully static site with sub-second loads.",
       tech: [
         "Astro",
         "AWS Amplify Gen 2",
@@ -255,7 +255,7 @@ export const siteContent = {
     {
       title: "Secure Moodle Deployment",
       description:
-        "Educational institutions need LMS platforms that are both highly available and secure. Designed an enterprise-grade Moodle deployment with VPC networking, ALB, Aurora MySQL, and Systems Manager automation — delivering a production-ready platform with zero-downtime updates.",
+        "Educational institutions need LMS platforms that are both highly available and secure. Designed an enterprise-grade Moodle deployment with VPC networking, ALB, Aurora MySQL, and Systems Manager automation, delivering a production-ready platform with zero-downtime updates.",
       tech: ["VPC", "ALB", "Aurora MySQL", "Systems Manager"],
       links: {
         github: "https://github.com/christophercorbin/moodle-lms-on-aws",
@@ -316,7 +316,7 @@ export const siteContent = {
       },
     ],
     anthropicTraining: {
-      title: "Anthropic Academy — AI Engineering Training",
+      title: "Anthropic Academy: AI Engineering Training",
       blurb:
         "Certified coursework in building with Claude: API integration, agentic coding workflows, and the Model Context Protocol.",
       courses: [

@@ -5,14 +5,14 @@ import type { IconName } from "./icon-names";
 
 const { projects } = siteContent;
 
-// Project icons matching v1
+// Project icons (order matches siteContent.projects)
 const projectIcons: IconName[] = [
   "lightbulb",        // MathMentor
+  "cloud",            // Hurricane-Ready
   "building-columns", // Landing Zone
   "code-branch",      // Delivery Pipeline
   "shield-halved",    // SOC2 ML Analyzer
-  "cloud",            // This site
-  "graduation-cap",   // Moodle
+  "server",           // This site
 ];
 ---
 
@@ -26,7 +26,9 @@ const projectIcons: IconName[] = [
           <!-- Gradient header with icon -->
           <div class="project-image">
             <Icon name={projectIcons[i] ?? "code"} size={3} />
-            <span class="project-badge">Open Source</span>
+            <span class:list={["project-badge", "live" in project.links && "project-badge-live"]}>
+              {"live" in project.links ? "Live Demo" : "Open Source"}
+            </span>
           </div>
 
           <!-- Content -->
@@ -50,7 +52,19 @@ const projectIcons: IconName[] = [
               >
                 <Icon name="github" /> View Code
               </a>
-              {project.links.demo && (project.links.demo as string) !== (project.links.github as string) && (
+              {"live" in project.links && project.links.live && (
+                <a
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-link project-link-live"
+                  aria-label={`Open the live ${project.title} demo`}
+                >
+                  <Icon name="external-link" /> Live Demo
+                </a>
+              )}
+              {"demo" in project.links && project.links.demo &&
+                (project.links.demo as string) !== (project.links.github as string) && (
                 <a
                   href={project.links.demo}
                   target="_blank"
@@ -125,6 +139,16 @@ const projectIcons: IconName[] = [
     letter-spacing: 0.5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     animation: pulse-badge 2s infinite;
+  }
+
+  .project-badge-live {
+    background: #16a34a;
+    color: #ffffff;
+  }
+
+  .project-link-live {
+    color: var(--color-secondary);
+    font-weight: 700;
   }
 
   @keyframes pulse-badge {

@@ -230,7 +230,58 @@ export const siteContent = {
       ],
       links: {
         github: "https://github.com/christophercorbin/math-mentor",
-        demo: "https://github.com/christophercorbin/math-mentor#readme",
+        live: "https://d297i0l0pfbu7x.cloudfront.net",
+      },
+    },
+    {
+      title: "Hurricane-Ready: Bajan Storm Alerts",
+      description:
+        "Most storms don't hit Barbados directly, they pass nearby and still bring damaging wind, rain, and seas. Built a hurricane-preparedness service that watches the NOAA/NHC feed, computes the threat deterministically (so software, never AI, decides how worried to be), and has Claude on Bedrock explain it calmly. Ships as one hardened container on ECS Fargate behind CloudFront, with SMS/email/webhook alerts and a Beryl 2024 replay mode.",
+      tech: [
+        "Claude on Amazon Bedrock",
+        "ECS Fargate",
+        "Docker",
+        "CloudFront",
+        "Amazon SNS / SES",
+        "GitHub Actions CI/CD",
+      ],
+      links: {
+        github: "https://github.com/christophercorbin/hurricane-ready",
+        live: "https://d1a03jmlh4dne2.cloudfront.net",
+      },
+    },
+    {
+      title: "Secure Public-Sector Landing Zone",
+      description:
+        "Government and regulated teams rebuild the same AWS account baseline every time. Built a modular OpenTofu landing zone: organization guardrails as code (SCPs for root denial, region allowlists, IMDSv2), a CIS-aligned detective baseline (CloudTrail, Config, Security Hub), and an AI assistant that turns live findings into SOC 2-style evidence packs using Claude on Bedrock.",
+      tech: [
+        "OpenTofu",
+        "AWS Organizations",
+        "SCPs",
+        "Security Hub",
+        "AWS Config",
+        "Claude on Bedrock",
+      ],
+      links: {
+        github: "https://github.com/christophercorbin/secure-landing-zone",
+        demo: "https://github.com/christophercorbin/secure-landing-zone#readme",
+      },
+    },
+    {
+      title: "Zero-Downtime Delivery Pipeline",
+      description:
+        "Deployments should be boring. Built a progressive-delivery reference pipeline: blue/green ECS Fargate through CodeDeploy with 10% canary traffic shifting, CloudWatch alarm-triggered automatic rollback, and keyless OIDC CI/CD from GitHub Actions, all defined in OpenTofu. Includes a chaos switch that demos a live rollback with zero failed requests on the stable path.",
+      tech: [
+        "ECS Fargate",
+        "CodeDeploy",
+        "Blue/Green Canary",
+        "GitHub Actions OIDC",
+        "CloudWatch",
+        "OpenTofu",
+      ],
+      links: {
+        github: "https://github.com/christophercorbin/zero-downtime-pipeline",
+        demo: "https://github.com/christophercorbin/zero-downtime-pipeline#readme",
       },
     },
     {
@@ -266,17 +317,7 @@ export const siteContent = {
       ],
       links: {
         github: "https://github.com/christophercorbin/eportfolio-v2",
-        demo: "https://github.com/christophercorbin/eportfolio-v2#readme",
-      },
-    },
-    {
-      title: "Secure Moodle Deployment",
-      description:
-        "Educational institutions need LMS platforms that are both highly available and secure. Designed an enterprise-grade Moodle deployment with VPC networking, ALB, Aurora MySQL, and Systems Manager automation, delivering a production-ready platform with zero-downtime updates.",
-      tech: ["VPC", "ALB", "Aurora MySQL", "Systems Manager"],
-      links: {
-        github: "https://github.com/christophercorbin/moodle-lms-on-aws",
-        demo: "https://github.com/christophercorbin/moodle-lms-on-aws#readme",
+        live: "https://christophercorbin.cloud",
       },
     },
   ],
